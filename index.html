@@ -128,6 +128,43 @@ nav.scrolled{padding:16px 52px;background:rgba(0,0,0,.88);backdrop-filter:blur(1
 .why-card:hover .why-num,.why-card:hover .why-name{color:rgba(255,255,255,.9)}
 .why-card:hover .why-body{color:rgba(255,255,255,.55)}
 
+/* ESTIMATOR */
+#estimator{padding:140px 80px;background:#fff;color:#000}
+.est-hd{margin-bottom:60px}
+.est-label{font-size:11px;letter-spacing:.5em;text-transform:uppercase;color:rgba(0,0,0,.32);margin-bottom:16px}
+.est-title{font-size:clamp(38px,5vw,76px);font-weight:700;letter-spacing:-.03em;line-height:.95;color:#000}
+.est-sub{font-size:15px;color:rgba(0,0,0,.45);margin-top:18px;line-height:1.7}
+.est-card{border:1px solid #ddd;position:relative;overflow:hidden}
+.est-pane{display:none;padding:60px 52px}
+.est-pane.active{display:block;animation:estFade .32s ease}
+@keyframes estFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.est-step-info{font-size:11px;letter-spacing:.38em;text-transform:uppercase;color:rgba(0,0,0,.28);margin-bottom:22px}
+.est-q{font-size:22px;font-weight:600;letter-spacing:-.01em;margin-bottom:36px;line-height:1.3}
+.est-q-note{font-size:14px;font-weight:400;color:rgba(0,0,0,.38);letter-spacing:0}
+.est-opts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.est-opts--3{grid-template-columns:repeat(3,1fr)}
+.est-opt{padding:28px 32px;border:1px solid #ddd;background:#fff;cursor:pointer;text-align:left;transition:border-color .2s,background .2s,color .2s;font-family:var(--font)}
+.est-opt:hover{border-color:#aaa}
+.est-opt.selected,.est-opt.toggled{background:#000;color:#fff;border-color:#000}
+.opt-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.opt-name{font-size:16px;font-weight:600;letter-spacing:-.01em}
+.opt-price{font-size:12px;letter-spacing:.06em;color:rgba(0,0,0,.38);transition:color .2s}
+.est-opt.selected .opt-price,.est-opt.toggled .opt-price{color:rgba(255,255,255,.48)}
+.opt-desc{font-size:13px;color:rgba(0,0,0,.42);line-height:1.55;transition:color .2s}
+.est-opt.selected .opt-desc,.est-opt.toggled .opt-desc{color:rgba(255,255,255,.46)}
+.est-next-btn{display:inline-block;margin-top:32px;padding:14px 40px;background:#000;color:#fff;border:none;font-family:var(--font);font-size:12px;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.est-next-btn:hover{background:#222}
+.est-result-eyebrow{font-size:11px;letter-spacing:.45em;text-transform:uppercase;color:rgba(0,0,0,.3);margin-bottom:16px}
+.est-result-num{font-size:clamp(80px,12vw,152px);font-weight:700;letter-spacing:-.05em;line-height:1;color:#000;margin-bottom:14px}
+.est-result-note{font-size:14px;color:rgba(0,0,0,.38);line-height:1.75;max-width:460px;margin-bottom:48px}
+.est-result-actions{display:flex;align-items:center;gap:36px}
+.est-result-cta{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#000;border-bottom:1px solid rgba(0,0,0,.28);padding-bottom:6px;transition:all .3s}
+.est-result-cta:hover{border-color:#000;letter-spacing:.28em}
+.est-restart-btn{background:none;border:none;font-family:var(--font);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(0,0,0,.32);cursor:pointer;transition:color .2s}
+.est-restart-btn:hover{color:#000}
+.est-progress-wrap{height:2px;background:#eee}
+.est-progress-bar{height:100%;background:#000;width:0;transition:width .45s cubic-bezier(.4,0,.2,1)}
+
 /* PRICING */
 #pricing{padding:140px 80px;background:#0a0a0a;color:#fff}
 .price-hd{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:72px}
@@ -196,7 +233,7 @@ footer{padding:52px 80px;background:#000;display:flex;align-items:center;justify
   .svc-card:nth-child(2){border-right:none}
   .svc-card:nth-child(3),.svc-card:nth-child(4){border-top:1px solid #ddd}
   .svc-card:nth-child(4){border-right:none}
-  .why-grid,.price-grid{grid-template-columns:1fr}
+  .why-grid,.price-grid,.est-opts,.est-opts--3{grid-template-columns:1fr}
   .why-card{border-right:none;border-bottom:1px solid #ddd}
   .why-card:last-child{border-bottom:none}
   .price-card{border-right:none;border-bottom:1px solid rgba(255,255,255,.1)}
@@ -210,7 +247,8 @@ footer{padding:52px 80px;background:#000;display:flex;align-items:center;justify
   nav{padding:20px 24px}
   nav.scrolled{padding:14px 24px}
   .nav-menu{display:none}
-  #about,#services,#work,#process,#why,#pricing,#contact{padding:80px 24px}
+  #about,#services,#work,#process,#why,#estimator,#pricing,#contact{padding:80px 24px}
+  .est-pane{padding:40px 24px}
   footer{padding:44px 24px;flex-direction:column;gap:28px;text-align:center}
   .svc-header{flex-direction:column;align-items:flex-start;gap:16px}
   .svc-note{text-align:left}
@@ -545,6 +583,89 @@ footer{padding:52px 80px;background:#000;display:flex;align-items:center;justify
   </div>
 </section>
 
+<!-- ESTIMATOR -->
+<section id="estimator">
+  <div class="est-hd reveal">
+    <p class="est-label">Cost Estimator</p>
+    <h2 class="est-title">What are<br>we building?</h2>
+    <p class="est-sub">Three questions. One number.</p>
+  </div>
+  <div class="est-card reveal rd1">
+    <!-- Step 1 -->
+    <div class="est-pane active" id="est-1">
+      <p class="est-step-info">Step 1 of 3</p>
+      <p class="est-q">What type of site do you need?</p>
+      <div class="est-opts">
+        <button class="est-opt" data-step="1" data-price="100">
+          <div class="opt-top"><span class="opt-name">Landing Page</span><span class="opt-price">from $100</span></div>
+          <p class="opt-desc">Single page, one clear goal. Great for launches and promos.</p>
+        </button>
+        <button class="est-opt" data-step="1" data-price="200">
+          <div class="opt-top"><span class="opt-name">Business Site</span><span class="opt-price">from $200</span></div>
+          <p class="opt-desc">Multi-page, full online presence. About, services, contact, and more.</p>
+        </button>
+      </div>
+    </div>
+    <!-- Step 2 -->
+    <div class="est-pane" id="est-2">
+      <p class="est-step-info">Step 2 of 3</p>
+      <p class="est-q">Any add-ons? <span class="est-q-note">Select all that apply.</span></p>
+      <div class="est-opts">
+        <button class="est-opt est-toggle" data-price="50">
+          <div class="opt-top"><span class="opt-name">SEO Setup</span><span class="opt-price">+$50</span></div>
+          <p class="opt-desc">Keywords, meta tags, and Google-ready from day one.</p>
+        </button>
+        <button class="est-opt est-toggle" data-price="75">
+          <div class="opt-top"><span class="opt-name">Logo & Branding</span><span class="opt-price">+$75</span></div>
+          <p class="opt-desc">Custom mark and color palette built around your business.</p>
+        </button>
+        <button class="est-opt est-toggle" data-price="25">
+          <div class="opt-top"><span class="opt-name">Animations</span><span class="opt-price">+$25</span></div>
+          <p class="opt-desc">Subtle motion that makes your site feel premium.</p>
+        </button>
+        <button class="est-opt est-toggle" data-price="100">
+          <div class="opt-top"><span class="opt-name">E-Commerce</span><span class="opt-price">+$100</span></div>
+          <p class="opt-desc">Product pages, cart, and checkout — ready to sell.</p>
+        </button>
+      </div>
+      <button class="est-next-btn" id="est-next-2">Next &nbsp;→</button>
+    </div>
+    <!-- Step 3 -->
+    <div class="est-pane" id="est-3">
+      <p class="est-step-info">Step 3 of 3</p>
+      <p class="est-q">What's your timeline?</p>
+      <div class="est-opts est-opts--3">
+        <button class="est-opt" data-step="3" data-price="0">
+          <div class="opt-top"><span class="opt-name">No rush</span><span class="opt-price">Standard</span></div>
+          <p class="opt-desc">2–4 weeks</p>
+        </button>
+        <button class="est-opt" data-step="3" data-price="25">
+          <div class="opt-top"><span class="opt-name">Within 2 weeks</span><span class="opt-price">+$25</span></div>
+          <p class="opt-desc">Tight but doable</p>
+        </button>
+        <button class="est-opt" data-step="3" data-price="50">
+          <div class="opt-top"><span class="opt-name">ASAP</span><span class="opt-price">+$50</span></div>
+          <p class="opt-desc">Under a week, rush rate applies</p>
+        </button>
+      </div>
+    </div>
+    <!-- Result -->
+    <div class="est-pane" id="est-result">
+      <p class="est-result-eyebrow">Your estimate</p>
+      <div class="est-result-num">$<span id="est-total">0</span></div>
+      <p class="est-result-note">This is a starting point — your final price is confirmed after our first conversation.</p>
+      <div class="est-result-actions">
+        <a href="#contact" class="est-result-cta">Start your project &nbsp;→</a>
+        <button class="est-restart-btn" id="est-restart">Start over</button>
+      </div>
+    </div>
+    <!-- Progress -->
+    <div class="est-progress-wrap">
+      <div class="est-progress-bar" id="est-progress"></div>
+    </div>
+  </div>
+</section>
+
 <!-- PRICING -->
 <section id="pricing">
   <div class="price-hd reveal">
@@ -687,6 +808,62 @@ const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')});
 },{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// ---- ESTIMATOR ----
+(function(){
+  let base=0,addonTotal=0,timelineExtra=0;
+  const bar=document.getElementById('est-progress');
+
+  function showPane(id,pct){
+    document.querySelectorAll('.est-pane').forEach(p=>p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    bar.style.width=pct+'%';
+  }
+
+  function countUp(el,target){
+    const dur=700,start=performance.now();
+    (function tick(now){
+      const p=Math.min((now-start)/dur,1);
+      const ease=1-Math.pow(1-p,4);
+      el.textContent=Math.round(ease*target);
+      if(p<1)requestAnimationFrame(tick);
+    })(start);
+  }
+
+  document.querySelectorAll('[data-step="1"]').forEach(btn=>{
+    btn.addEventListener('click',function(){
+      base=+this.dataset.price;
+      addonTotal=0;timelineExtra=0;
+      document.querySelectorAll('.est-toggle').forEach(b=>b.classList.remove('toggled'));
+      showPane('est-2',33);
+    });
+  });
+
+  document.querySelectorAll('.est-toggle').forEach(btn=>{
+    btn.addEventListener('click',function(){
+      const price=+this.dataset.price;
+      if(this.classList.toggle('toggled')){addonTotal+=price;}
+      else{addonTotal-=price;}
+    });
+  });
+
+  document.getElementById('est-next-2').addEventListener('click',()=>showPane('est-3',66));
+
+  document.querySelectorAll('[data-step="3"]').forEach(btn=>{
+    btn.addEventListener('click',function(){
+      timelineExtra=+this.dataset.price;
+      const total=base+addonTotal+timelineExtra;
+      showPane('est-result',100);
+      countUp(document.getElementById('est-total'),total);
+    });
+  });
+
+  document.getElementById('est-restart').addEventListener('click',()=>{
+    base=0;addonTotal=0;timelineExtra=0;
+    document.querySelectorAll('.est-toggle').forEach(b=>b.classList.remove('toggled'));
+    showPane('est-1',0);
+  });
+})();
 
 // ---- CONTACT FORM ----
 document.getElementById('ct-form').addEventListener('submit',function(e){
